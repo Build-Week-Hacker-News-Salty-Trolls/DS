@@ -1,3 +1,7 @@
+# Ignore env files
+.env
+saltyhackers-bigquery.json
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
