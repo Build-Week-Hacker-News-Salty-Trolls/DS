@@ -37,10 +37,10 @@ def create_connection(env_file_path=None, verbose=False):
 
     # Connects to PostgreSQL database local or remote
     pg_conn = None
-    dbname = os.environ.get('db_name')
-    user = os.environ.get('username')
-    password = os.environ.get('password')
-    host = os.environ.get('host')
+    dbname = os.environ.get('ESQL_DBNAME')
+    user = os.environ.get('ESQL_USER')
+    password = os.environ.get('ESQL_PASSWORD')
+    host = os.environ.get('ESQL_HOST')
 
     if verbose:
         print(f'Using psycopg2 version: {psycopg2.__version__}')
