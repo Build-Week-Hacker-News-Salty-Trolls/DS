@@ -29,7 +29,10 @@ Returns:
 
 3. Most Saltiest Comments of a User
 
-GET: `https://salty-salt.herokuapp.com/user-comments/wnight` 
+GET: `https://salty-salt.herokuapp.com/user-comments/<user-name>` 
+
+Example, user `wnight`
+GET: `https://salty-salt.herokuapp.com/user-comments/wnight`
 
 Returns:
 ![Top 100 Salty Users](img/user_comments.png)
