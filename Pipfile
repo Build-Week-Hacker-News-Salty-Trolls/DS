@@ -18,6 +18,10 @@ matplotlib = "*"
 nltk = "*"
 vadersentiment = "*"
 python-decouple = "*"
+jupyter = "*"
+psycopg2-binary = "*"
+python-dotenv = "*"
+sqlalchemy = "*"
 
 [requires]
 python_version = "3.7"

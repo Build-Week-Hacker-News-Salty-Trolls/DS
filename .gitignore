@@ -1,6 +1,8 @@
 # Ignore env files
 .env
 saltyhackers-bigquery.json
+SaltyHackers-ef4dd15c271f.json
+Pipfile.lock
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
