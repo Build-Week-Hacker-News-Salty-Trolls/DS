@@ -13,7 +13,7 @@
 BASE URL = `https://salty-salt.herokuapp.com`
 
 1. Top 100 Salty Users
-Returns top 100 
+
 GET: `https://salty-salt.herokuapp.com/salty-users` 
 
 Returns: 
