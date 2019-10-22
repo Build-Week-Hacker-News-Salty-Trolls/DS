@@ -108,7 +108,7 @@ def create_app():
         results = results.to_json(orient = 'records')
         return results
 
-    @app.rote("/dump", methods = ['GET'])
+    @app.route("/dump", methods = ['GET'])
     def dump_list():
         results = dump()
         results = results.to_json(orient = 'records')
