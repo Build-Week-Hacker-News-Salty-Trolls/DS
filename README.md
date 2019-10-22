@@ -36,3 +36,9 @@ GET: `https://salty-salt.herokuapp.com/user-comments/wnight`
 
 Returns:
 ![Top 100 Salty Users](img/user_comments.png)
+
+4. Dump
+
+GET: `https://salty-salt.herokuapp.com/dump`
+Returns:
+![Data dump of database](img/data_dump.png)
