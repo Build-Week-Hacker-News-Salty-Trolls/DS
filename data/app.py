@@ -6,6 +6,7 @@ from decouple import config
 from flask import Flask, json, jsonify, request, send_file, render_template
 import psycopg2
 from .postgres_helper import select_query
+from flask_cors import CORS, cross_origin
 
 
 # Elephant DB connection info
@@ -22,7 +23,8 @@ def create_app():
 #    app.config['SQLALCHEMY_DATABASE_URI'] = config('DATABASE_URL')
     app.config['ENV'] = 'debug'  # TODO change before heroku deployment
 #    DB.init_app(app)
-
+    cors = CORS(app)
+    app.config['CORS_HEADERS'] = 'Content-Type'
     def saltiest_comments():
         """Query to get the text of the most salty comments.
         Returns a list of (comment, score) tuples. """
