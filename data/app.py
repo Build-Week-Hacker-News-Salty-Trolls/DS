@@ -76,6 +76,15 @@ def create_app():
         results = select_query(pg_conn, salty_comments_query)
         return results
 
+
+    def dump():
+        """Query to get all data"""
+        pg_conn = psycopg2.connect(dbname=dbname, user=user,
+                                   password=password, host=host)
+        dump_query = """SELECT * FROM salt;"""
+        results = select_query(pg_conn, dump_query)
+        return results
+
     # @app.route("/")
     # def root():
     #     return render_template('base.html', title="A Salty Flask")
@@ -96,6 +105,12 @@ def create_app():
     @app.route("/user-comments/<name>", methods=['GET'])
     def user_comments_list(name):
         results = user_comments(name)
+        results = results.to_json(orient = 'records')
+        return results
+
+    @app.rote("/dump", methods = ['GET'])
+    def dump_list():
+        results = dump()
         results = results.to_json(orient = 'records')
         return results
 
