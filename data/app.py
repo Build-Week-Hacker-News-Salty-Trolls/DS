@@ -35,10 +35,6 @@ def create_app():
                                  FROM salt
                                  ORDER BY salty_score asc
                                  LIMIT 100;"""
-        # pg_curs.execute(salty_comment_query)
-        # results = pg_curs.fetchall()
-        # pg_curs.close()
-        # pg_conn.close()
         results = select_query(pg_conn, salty_comment_query)
         return results
 
@@ -53,10 +49,6 @@ def create_app():
                               GROUP BY author, ranking
                               ORDER BY total_score ASC
                               LIMIT 100;"""
-        # pg_curs.execute(salty_user_query)
-        # results = pg_curs.fetchall()
-        # pg_curs.close()
-        # pg_conn.close()
         results = select_query(pg_conn, salty_user_query)
         return results
 
@@ -71,10 +63,6 @@ def create_app():
                               WHERE author = '{name}'
                               ORDER BY salty_score asc
                               LIMIT 10;"""
-        # pg_curs.execute(salty_days_query)
-        # results = pg_curs.fetchall()
-        # pg_curs.close()
-        # pg_conn.close()
         results = select_query(pg_conn, salty_comments_query)
         return results
 
@@ -86,16 +74,28 @@ def create_app():
         dump_query = """SELECT * FROM salt;"""
         results = select_query(pg_conn, dump_query)
         return results
+    
+    def user_dump():
+        """Query to get all users"""
+        pg_conn = psycopg2.connect(dbname=dbname, user=user,
+                                   password=password, host=host)
+        user_dump_query = """SELECT author, SUM(salty_score) as total_score, ranking
+                             FROM salt
+                             GROUP BY author, ranking;
+                           """
+        results = select_query(pg_conn, user_dump_query)
+        return results
 
-    # @app.route("/")
-    # def root():
-    #     return render_template('base.html', title="A Salty Flask")
+    @app.route("/user-dump")
+    def uset_dump_list():
+        results = user_dump()
+        results = results.to_json(orient = 'records')
+        return results
 
     @app.route("/salty-users")
     def user_list():
         results = saltiest_users()
         results = results.to_json(orient = 'records')
-        # return render_template('salty-table.html', title='Saltiest Users', results=results)
         return results
 
     @app.route("/salty-comments")
@@ -107,6 +107,12 @@ def create_app():
     @app.route("/user-comments/<name>", methods=['GET'])
     def user_comments_list(name):
         results = user_comments(name)
+        results = results.to_json(orient = 'records')
+        return results
+
+    @app.route("/dump", methods = ['GET'])
+    def dump_list():
+        results = dump()
         results = results.to_json(orient = 'records')
         return results
 
