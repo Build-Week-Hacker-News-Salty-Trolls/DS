@@ -42,3 +42,9 @@ Returns:
 GET: `https://salty-salt.herokuapp.com/dump`
 Returns:
 ![Data dump of database](img/data_dump.png)
+
+5. User Dump
+GET: `https://salty-salt.herokuapp.com/user-dump`
+
+RETURNS:
+![Sample of total users - format: {author: , total_score: , ranking: }](img/user_dump.png)
